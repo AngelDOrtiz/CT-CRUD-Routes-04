@@ -46,3 +46,15 @@ describe('dog routes', () => {
     expect(res.body).toEqual([Nero, Bandit, Tiberius]);
   });
 });
+
+it('finds a dog via ID', async () => {
+  
+  const dog = await Dog.insert({
+    name: 'Nero',
+    age: 3,
+    weight: '30 lbs'
+  });
+
+  const res = await request(app).get(`/api/v1/dogs/${dog.id}`);
+  expect(res.body).toEqual(dog);
+});
