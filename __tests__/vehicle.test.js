@@ -22,6 +22,29 @@ describe('vehicle routes', () => {
     });
   });
 
+  it('finds all vehicles via get', async () => {
+    
+    const bike = await Vehicle.insert({
+      name: 'Bike', 
+      wheels: 2, 
+      speed: '12 mph'
+    });
 
+    const car = await Vehicle.insert({
+      name: 'Car', 
+      wheels: 4, 
+      speed: '60 mph'
+    });
 
+    const motorBike = await Vehicle.insert({
+      name: 'Motor Bike', 
+      wheels: 2, 
+      speed: '70 mph'
+    });
+
+    const res = await request(app).get('/api/v1/vehicles');
+    expect(res.body).toEqual([bike, car, motorBike]);
+  });
 });
+
+
