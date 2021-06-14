@@ -45,6 +45,19 @@ describe('vehicle routes', () => {
     const res = await request(app).get('/api/v1/vehicles');
     expect(res.body).toEqual([bike, car, motorBike]);
   });
+
+  it('finds a vehicle via ID', async () => {
+  
+    const vehicle = await Vehicle.insert({
+      name: 'Motor Bike', 
+      wheels: 2, 
+      speed: '70 mph'
+    });
+  
+    const res = await request(app).get(`/api/v1/vehicles/${vehicle.id}`);
+    expect(res.body).toEqual(vehicle);
+  });
+
 });
 
 
