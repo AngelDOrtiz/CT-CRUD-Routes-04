@@ -22,6 +22,28 @@ describe('candy routes', () => {
     });
   });
 
+  it('finds all candies via GET', async () => {
+   
+    const Skittles = await Candy.insert({
+      name: 'Skittles',
+      category: 'Chewy',
+      flavor: 'Assorted'
+    });
 
+    const MnM = await Candy.insert({
+      name: 'M&Ms',
+      category: 'Chocolate',
+      flavor: 'Chocolate'
+    });
+
+    const Smarties = await Candy.insert({
+      name: 'Smarties',
+      category: 'Tablet',
+      flavor: 'Assorted'
+    });
+
+    const res = await request(app).get('/api/v1/candies');
+    expect(res.body).toEqual([Skittles, MnM, Smarties]);
+  });
 
 });
