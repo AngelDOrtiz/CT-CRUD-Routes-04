@@ -58,4 +58,18 @@ describe('candy routes', () => {
     expect(res.body).toEqual(candy);
   });
 
+  it('UPDATES a candy via PUT', async () => {
+    const candy = await Candy.insert({
+      name: 'Skittles',
+      category: 'Chewy',
+      flavor: 'Assorted'
+    });
+  
+    candy.name = 'Skittlez';
+  
+    const res = await request(app).put(`/api/v1/candies/${candy.id}`)
+      .send(candy);
+    expect(res.body).toEqual(candy);
+  });
+
 });
