@@ -72,5 +72,15 @@ describe('drink routes', () => {
     expect(res.body).toEqual(drink);
   });
 
-
+  it('deletes a drink via DELETE', async () => {
+    const drink = await Drink.insert({
+      name: 'Chocolate Milk',
+      alcohol: 'No',
+      flavor: 'Chocolate'
+    });
+  
+    const res = await request(app).delete(`/api/v1/drinks/${drink.id}`)
+      .send(drink);
+    expect(res.body).toEqual(drink);
+  });
 });
