@@ -46,5 +46,17 @@ describe('drink routes', () => {
     expect(res.body).toEqual([OJ, Corona, chocoMilk]);
   });
 
+  it('finds a drink via ID', async () => {
+  
+    const drink = await Drink.insert({
+      name: 'Corona',
+      alcohol: 'Yes',
+      flavor: 'Hops and lime'
+    });
+  
+    const res = await request(app).get(`/api/v1/drinks/${drink.id}`);
+    expect(res.body).toEqual(drink);
+  });
+
 
 });
