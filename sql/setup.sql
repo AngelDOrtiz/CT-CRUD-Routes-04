@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS dogs, candies, drinks, vehicles;
+DROP TABLE IF EXISTS dogs, candies, drinks, vehicles, pokemons;
 
 CREATE TABLE dogs (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -26,4 +26,11 @@ CREATE TABLE vehicles (
   name TEXT NOT NULL,
   wheels INTEGER NOT NULL,
   speed TEXT NOT NULL
+);
+
+CREATE TABLE pokemons (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  type TEXT NOT NULL,
+  canEvolve TEXT NOT NULL
 )
