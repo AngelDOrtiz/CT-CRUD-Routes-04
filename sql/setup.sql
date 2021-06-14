@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS dogs, candies, drinks;
+DROP TABLE IF EXISTS dogs, candies, drinks, vehicles;
 
 CREATE TABLE dogs (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -20,3 +20,10 @@ CREATE TABLE drinks (
   alcohol TEXT NOT NULL,
   flavor TEXT NOT NULL
 );
+
+CREATE TABLE vehicles (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  wheels INTEGER NOT NULL,
+  speed TEXT NOT NULL
+)
