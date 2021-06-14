@@ -2,7 +2,6 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
-import dogs from '../lib/controllers/dogs.js';
 import Dog from '../lib/models/Dogs.js';
 
 describe('dog routes', () => {
@@ -69,6 +68,18 @@ it('UPDATES a dog via put', async () => {
   dog.age = 4;
 
   const res = await request(app).put(`/api/v1/dogs/${dog.id}`)
+    .send(dog);
+  expect(res.body).toEqual(dog);
+});
+
+it('deletes a dog via delete', async () => {
+  const dog = await Dog.insert({
+    name: 'Nero',
+    age: 2,
+    weight: '30 lbs'
+  });
+
+  const res = await request(app).delete(`/api/v1/dogs/${dog.id}`)
     .send(dog);
   expect(res.body).toEqual(dog);
 });
