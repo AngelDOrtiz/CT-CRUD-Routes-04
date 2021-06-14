@@ -72,4 +72,16 @@ describe('candy routes', () => {
     expect(res.body).toEqual(candy);
   });
 
+  it('deletes a candy via DELETE', async () => {
+    const candy = await Candy.insert({
+      name: 'Skittles',
+      category: 'Chewy',
+      flavor: 'Assorted'
+    });
+  
+    const res = await request(app).delete(`/api/v1/candies/${candy.id}`)
+      .send(candy);
+    expect(res.body).toEqual(candy);
+  });
+
 });
