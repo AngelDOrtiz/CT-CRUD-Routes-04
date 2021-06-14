@@ -58,5 +58,20 @@ describe('pokemon routes', () => {
     expect(res.body).toEqual(pokemon);
   });
 
+  it('UPDATES a pokemon via PUT', async () => {
+    const pokemon = await Pokemon.insert({
+      id: 1,
+      name: 'Weedle',
+      type: 'Bug',
+      canEvolve: 'Yes'
+    });
+  
+    pokemon.name = 'Stupid';
+  
+    const res = await request(app).put(`/api/v1/pokemons/${pokemon.id}`)
+      .send(pokemon);
+    expect(res.body).toEqual(pokemon);
+  });
+
 
 });
