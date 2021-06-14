@@ -72,6 +72,18 @@ describe('vehicle routes', () => {
     expect(res.body).toEqual(vehicle);
   });
 
+  it('deletes a vehivle via delete', async () => {
+    const vehicle = await Vehicle.insert({
+      name: 'Bike', 
+      wheels: 2, 
+      speed: '12 mph'
+    });
+  
+    const res = await request(app).delete(`/api/v1/vehicles/${vehicle.id}`)
+      .send(vehicle);
+    expect(res.body).toEqual(vehicle);
+  });
+
 });
 
 
