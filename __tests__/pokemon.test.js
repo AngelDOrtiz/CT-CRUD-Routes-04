@@ -46,4 +46,17 @@ describe('pokemon routes', () => {
     expect(res.body).toEqual([pikachu, charizard, weedle]);
   });
 
+  it('finds a pokemon via ID', async () => {
+  
+    const pokemon = await Pokemon.insert({
+      name: 'Weedle',
+      type: 'Bug',
+      canEvolve: 'Yes'
+    });
+  
+    const res = await request(app).get(`/api/v1/pokemons/${pokemon.id}`);
+    expect(res.body).toEqual(pokemon);
+  });
+
+
 });
