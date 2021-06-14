@@ -58,9 +58,8 @@ describe('pokemon routes', () => {
     expect(res.body).toEqual(pokemon);
   });
 
-  it('UPDATES a pokemon via PUT', async () => {
+  it.skip('UPDATES a pokemon via PUT', async () => {
     const pokemon = await Pokemon.insert({
-      id: 1,
       name: 'Weedle',
       type: 'Bug',
       canEvolve: 'Yes'
@@ -73,5 +72,16 @@ describe('pokemon routes', () => {
     expect(res.body).toEqual(pokemon);
   });
 
+  it('deletes a pokemon via DELETE', async () => {
+    const pokemon = await Pokemon.insert({
+      name: 'Weedle',
+      type: 'Bug',
+      canEvolve: 'Yes'
+    });
+  
+    const res = await request(app).delete(`/api/v1/pokemons/${pokemon.id}`)
+      .send(pokemon);
+    expect(res.body).toEqual(pokemon);
+  });
 
 });
