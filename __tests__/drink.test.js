@@ -58,5 +58,19 @@ describe('drink routes', () => {
     expect(res.body).toEqual(drink);
   });
 
+  it('UPDATES a drink via PUT', async () => {
+    const drink = await Drink.insert({
+      name: 'Chocolate Milk',
+      alcohol: 'No',
+      flavor: 'Chocolate'
+    });
+  
+    drink.alcohol = 'Yes';
+  
+    const res = await request(app).put(`/api/v1/drinks/${drink.id}`)
+      .send(drink);
+    expect(res.body).toEqual(drink);
+  });
+
 
 });
