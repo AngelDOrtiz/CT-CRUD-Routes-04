@@ -58,3 +58,17 @@ it('finds a dog via ID', async () => {
   const res = await request(app).get(`/api/v1/dogs/${dog.id}`);
   expect(res.body).toEqual(dog);
 });
+
+it('UPDATES a dog via put', async () => {
+  const dog = await Dog.insert({
+    name: 'Nero',
+    age: 3,
+    weight: '30 lbs'
+  });
+
+  dog.age = 4;
+
+  const res = await request(app).put(`/api/v1/dogs/${dog.id}`)
+    .send(dog);
+  expect(res.body).toEqual(dog);
+});
