@@ -58,6 +58,20 @@ describe('vehicle routes', () => {
     expect(res.body).toEqual(vehicle);
   });
 
+  it('UPDATES a vehicle via PUT', async () => {
+    const vehicle = await Vehicle.insert({
+      name: 'Bike', 
+      wheels: 2, 
+      speed: '12 mph'
+    });
+  
+    vehicle.wheels = 3;
+  
+    const res = await request(app).put(`/api/v1/vehicles/${vehicle.id}`)
+      .send(vehicle);
+    expect(res.body).toEqual(vehicle);
+  });
+
 });
 
 
