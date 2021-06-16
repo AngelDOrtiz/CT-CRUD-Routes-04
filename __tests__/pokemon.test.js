@@ -9,7 +9,7 @@ describe('pokemon routes', () => {
     return setup(pool);
   });
 
-  it.skip('creates a pokemon via POST', async () => {
+  it('creates a pokemon via POST', async () => {
     const res = await request(app)
       .post('/api/v1/pokemons')
       .send({ name: 'Pikachu', type: 'Electric', canEvolve: 'Yes' });
@@ -58,7 +58,7 @@ describe('pokemon routes', () => {
     expect(res.body).toEqual(pokemon);
   });
 
-  it.skip('UPDATES a pokemon via PUT', async () => {
+  it('UPDATES a pokemon via PUT', async () => {
     const pokemon = await Pokemon.insert({
       name: 'Weedle',
       type: 'Bug',
